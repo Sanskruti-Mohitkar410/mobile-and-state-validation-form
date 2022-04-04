@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Hyphen to a text using JavaScript</title>
+</head>
+
+<body>
+    <form  name="myfrm" onsubmit="thankyou.html" action="thankyou.html">
+        <label for="name">Name</label>
+        <input id="name" type="text" name="username" required placeholder="Enter your name"/><br><br>
+
+        <label for="mail">Email</label>
+        <input id="mail" type="email" name="email" required placeholder="Enter your email"/><br><br>
+
+        <label for="number">Number</label>
+
+        <input id="number" type="text" onkeyup="myfun(this)" name="mobilenum"
+            placeholder="Enter your mobile number" max = 18/>
+			
+		<img id="theImage"/>
+		
+		<label id="state"></label>
+		<br>
+        
+        <input type="submit" value="submit" />
+    </form>
+ 
+
+<script>
+
+
+function myfun(element)
+    {
+        let ele = document.getElementById(element.id);
+		const split_array = ele.value.split('-');
+		let last_word = split_array[split_array.length - 1];
+		let last_char = ele.value.charAt(ele.value.length - 1);	
+		var reg = /^\d+$/;
+		
+		if(checkPositionValidation(ele) && !reg.test(last_char))			
+		{
+			 document.getElementById(element.id).value = ele.value.slice(0, ele.value.length - 1);
+			 alert(last_char + 'Character Not Allowed. Please provide a valid Number');	
+		}
+		else if(ele.value.length > 18)
+		{
+			 document.getElementById(element.id).value = ele.value.slice(0, 18);
+			 alert('Only 10 digits number is allowed');	
+		}
+		else
+		{
+			let firstWord = '';
+			let last = ele.value.charAt(ele.value.length - 1);
+			
+			
+			if(ele.value.length === 5 && reg.test(last))
+			{
+				document.getElementById(element.id).value = ele.value.slice(0,ele.value.length - 1).concat(") - ",last);
+			}
+			else if(ele.value.length === 12 && reg.test(last))
+			{
+				document.getElementById(element.id).value = ele.value.slice(0,ele.value.length - 1).concat(" - ",last);
+			}
+			else if((ele.value.length === 6 && ele.value.charAt(5) === " ") || ele.value.length === 5 ||ele.value.length === 7 || ele.value.length === 8)
+			{
+				document.getElementById(element.id).value = ele.value.slice(0,4);
+			}
+			else if((ele.value.length === 12 && ele.value.charAt(12) === " ") || ele.value.length === 12 || ele.value.length === 13 || ele.value.length === 14)
+			{
+				document.getElementById(element.id).value = ele.value.slice(0,11);
+			}
+			else if(split_array[0].length === 1 && ! split_array[0].includes("(")) /*When user enters first number it should auto add ( before the number*/
+			{
+				let finalVal = "(".concat(split_array[0]);
+				document.getElementById(element.id).value = finalVal;	
+
+			}
+			else if(split_array.length === 2)
+			{
+				if(split_array[1].length === 4)
+				{
+					var first_threenum = split_array[0].substring(1,4);
+					first_threenum=Number(first_threenum);
+					let result1 = '';
+					if(first_threenum>621 && first_threenum<799)
+					{
+						result1 = 'Jio';
+					}
+					else if(first_threenum>801 && first_threenum<920)
+					{
+						result1 = 'Idea';
+					}
+					else if(first_threenum>921 && first_threenum<999)
+					{
+						result1 = 'Vodaphone';
+					}
+					
+					var second_threenum = split_array[1].substring(1,4);
+					second_threenum = Number(second_threenum);
+					let result2 = '';
+					console.log("second_threenum" + second_threenum);
+					if(second_threenum === 001){
+						result2 = ', Maharashrtra';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");	
+						document.getElementById('state').innerHTML = result1.concat(result2);
+					}
+					else if(second_threenum === 002){
+						result2 = ', Telangana';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 003){
+						result2 = ', Punjab';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 004){
+						result2 = ', Chandigargh';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 005){
+						result2 = ', Uttarakhand';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 006){
+						result2 = ', Haryana';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 007){
+						result2 = ', Delhi';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 008){
+						result2 = ', Rajasthan';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 009){
+						result2 = ', UP';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 010){
+						result2 = ', Bihar';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 011){
+						result2 = ', Sikkim';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 012){
+						result2 = ', Arunachal Pradesh';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 013){
+						result2 = ', Nagaland';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 014){
+						result2 = ', Manipur';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 015){
+						result2 = ', Mizoram';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 016){
+						result2 = ', Tripura';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 017){
+						result2 = ', Meghalaya';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 018){
+						result2 = ', Assam';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 019){
+						result2 = ', West Bengal';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 020){
+						result2 = ', Jharkhand';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 021){
+						result2 = ', Odisa';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 022){
+						result2 = ', Chhattisgargh';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 023){
+						result2 = ', MP';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 024){
+						result2 = ', Gujarat';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 028){
+						result2 = ',Andhra pradesh';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 029){
+						result2 = ', Karnataka';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 030){
+						result2 = ', Goa';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 031){
+						result2 = ', Lakshwadeep';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 032){
+						result2 = ', Kerala';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    else if(second_threenum === 033){
+						result2 = ', Tamil Nadu';
+						document.getElementById(element.id)	.value = ele.value.concat(" - ");
+						document.getElementById('state').innerHTML = result1.concat(result2);						
+					}
+                    
+					else{
+						alert('Invalid second 3 digits');	
+						document.getElementById(element.id).value = ele.value.substring(0,8);
+					}								
+					
+				}
+				else{
+					document.getElementById('state').innerHTML = '';
+				}
+			}
+			else if(split_array[0].length === 4 && !split_array[0].includes(")"))
+			{
+				document.getElementById('state').innerHTML = '';
+				firstWord = split_array[0].concat(") - ");
+				
+				var first_threenum = split_array[0].substring(1,4);
+				first_threenum=Number(first_threenum);
+				if(first_threenum>621 && first_threenum<799)
+				{
+					document.getElementById(element.id).value = firstWord;
+					document.getElementById("theImage").src = "jio.png"
+				}
+				else if(first_threenum>801 && first_threenum<920)
+				{
+					document.getElementById("theImage").src = "idea.png";
+					document.getElementById(element.id).value = firstWord;
+				}
+				else if(first_threenum>921 && first_threenum<999)
+				{
+					document.getElementById("theImage").src = "vodaphone.png";
+					document.getElementById(element.id).value = firstWord;
+				}
+				else
+				{
+					alert('Invalid first 3 digits');	
+					document.getElementById(element.id).value = '';
+				}				
+			}
+            else if(split_array[0].length<4){
+                document.getElementById("theImage").src = " ";
+            }
+		}
+        
+    }
+	
+function checkPositionValidation(ele)
+{
+	let word = ele.value;
+	let len_word = word.length;
+	if(len_word === 1 && word.charAt(len_word - 1) === "(")
+	{
+		return false
+	}
+	if(len_word === 5 && word.charAt(len_word - 1) === ")")
+	{
+		return false;
+	}
+	if((len_word === 7 || len_word === 13)&& word.charAt(len_word - 1) === "-")
+	{
+		return false;
+	}
+	if( (len_word === 6 || len_word === 8 || len_word === 12 || len_word === 14) && word.charAt(len_word - 1) === " ")
+	{
+		return false;
+	}
+	return true;
+}
+
+</script>
+</body>
+</html>
